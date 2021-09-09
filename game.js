@@ -1,3 +1,5 @@
+let playerScore = 0;
+let computerScore = 0;
 //function to make the computer choose rock paper or scissors
 function computerPlay(){
     //create an array with the possible choices
@@ -9,21 +11,29 @@ function computerPlay(){
 }
 function winner(cC, pC){
     if (cC === pC){
-        return("It was a tie!");
+        console.log("It was a tie!");
+        return(0);
     } else if (cC == "rock" && pC == "scissors"){
-        return("You Lose! Rock beats scissors");
+        console.log("You Lose! Rock beats scissors");
+        return(2);
     } else if (cC == "rock" && pC == "paper"){
-        return("You Win! Paper beats rock");
+        console.log("You Win! Paper beats rock");
+        return(1);
     } else if (cC == "paper" && pC == "scissors"){
-        return("You Win! Scissors beats rock");
+        console.log("You Win! Scissors beats rock");
+        return(1);
     } else if (cC == "paper" && pC == "rock"){
-        return("You Lose! Paper beats rock");
+        console.log("You Lose! Paper beats rock");
+        return(2);
     } else if (cC == "scissors" && pC == "paper"){
-        return("You Lose! Scissors beats paper");
+        console.log("You Lose! Scissors beats paper");
+        return(2);
     } else if (cC == "scissors" && pC == "rock"){
-        return("You Win! Rock beats Scissors");
+        console.log("You Win! Rock beats Scissors");
+        return(1);
     } else {
-        return("Something went wrong")
+        console.log("Something went wrong")
+        return("error");
     }
 
 }
@@ -31,9 +41,29 @@ function winner(cC, pC){
 function playerPlay(){
     let playerChoice = prompt("Rock, paper or scissors?").toLowerCase()
     const computerChoice = computerPlay();
-    console.log(winner(computerChoice, playerChoice));
+    return winner(computerChoice, playerChoice);
 }
 
 
 
-playerPlay();
+
+let timestoPlay = parseInt(prompt("How many times would you like to play?"));
+while (+timestoPlay > 0){
+    let round = playerPlay();
+    if (round == 1){
+        playerScore++;
+    } else if (round == 2) {
+        computerScore++;
+    }
+    timestoPlay--
+}
+
+console.log("The computer won " + computerScore + " times");
+console.log("You won " + playerScore + " times");
+if (computerScore > playerScore){
+    console.log("Sorry, the computer won this time");
+} else if (playerScore > computerScore){
+    console.log("Congrats! You won!");
+} else {
+    console.log("An error occured");
+}
