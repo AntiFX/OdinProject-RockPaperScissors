@@ -16,16 +16,17 @@ function computerPlay(){
 function winner(cC, pC){
     if (cC === pC){
         return("It was a tie!");
-    } else if (cC == "rock" && pC == "scissors"){
+    } else if (cC == "Rock" && pC == "Scissors"){
         computerScore++;
         return("You Lose! Rock beats scissors");
-    } else if (cC == "paper" && pC == "rock"){
+    } else if (cC == "Paper" && pC == "Rock"){
         computerScore++;
         return("You Lose! Paper beats rock");
-    } else if (cC == "scissors" && pC == "paper"){
+    } else if (cC == "Scissors" && pC == "Paper"){
         computerScore++;
         return("You Lose! Scissors beats paper");
     } else {
+        playerScore++
         return("You won! " + pC + " beats " + cC);
     }
 
