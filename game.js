@@ -4,11 +4,8 @@ let playerScore = 0;
 let computerScore = 0;
 //function to make the computer choose rock paper or scissors
 function computerPlay(){
-    //create an array with the possible choices
     let options = ["rock", "paper", "scissors"];
-    //choose a random number from 0 to 3
     let randomChoice = Math.floor(Math.random() * 3);
-    //reference the array with the number chosen to get the proper result
     return(options[randomChoice]);
 }
 //takes in computerChoice (cC) and playerChoice (pC)
@@ -45,42 +42,19 @@ function winner(cC, pC){
 
 }
 //function to get the player selection
-function playerPlay(){
-    //gets the lowecase version of user input
-    let playerChoice = prompt("Rock, paper or scissors?").toLowerCase()
-    //useers the computerPlay function to get the random computer choice, in string form
+function playerPlay(playerChoice){
     const computerChoice = computerPlay();
     //returns the result (0,1,2 or 3) from winner function
     return winner(computerChoice, playerChoice);
 }
 
+const buttons = document.querySelectorAll('button');
 
-
-//get user input for how many times they want to play, convert it to an integer
-let timestoPlay = parseInt(prompt("How many times would you like to play?"));
-//while loop to play as many times as selected
-while (+timestoPlay > 0){
-    //runs the whole game logic
-    let round = playerPlay();
-    //checks if player won or lost based on the winner function return values
-    if (round == 1){
-        playerScore++;
-    } else if (round == 2) {
-        computerScore++;
-    }
-    timestoPlay--
-}
-
-//may help to put this in a function, prints out how many times the computer won, then how many times the player won
-console.log("The computer won " + computerScore + " times");
-console.log("You won " + playerScore + " times");
-
-//also may be better in a function
-//check who won the overall game, player or computer
-if (computerScore > playerScore){
-    console.log("Sorry, the computer won this time");
-} else if (playerScore > computerScore){
-    console.log("Congrats! You won!");
-} else {
-    console.log("An error occured");
-}
+  // we use the .forEach method to iterate through each button
+buttons.forEach((button) => {
+  
+    // and for each one we add a 'click' listener
+    button.addEventListener('click', () => {
+      console.log(playerPlay(button.id));
+    });
+  });
