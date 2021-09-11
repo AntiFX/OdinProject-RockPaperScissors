@@ -15,29 +15,27 @@ function computerPlay(){
 //a different method than if/else statements might work better
 function winner(cC, pC){
     if (cC === pC){
-        console.log("It was a tie!");
-        return(0);
+        return("It was a tie!");
     } else if (cC == "rock" && pC == "scissors"){
-        console.log("You Lose! Rock beats scissors");
-        return(2);
+        computerScore++;
+        return("You Lose! Rock beats scissors");
     } else if (cC == "rock" && pC == "paper"){
-        console.log("You Win! Paper beats rock");
-        return(1);
+        playerScore++;
+        return("You Win! Paper beats rock");
     } else if (cC == "paper" && pC == "scissors"){
-        console.log("You Win! Scissors beats rock");
-        return(1);
+        playerScore++;
+        return("You Win! Scissors beats rock");
     } else if (cC == "paper" && pC == "rock"){
-        console.log("You Lose! Paper beats rock");
-        return(2);
+        computerScore++;
+        return("You Lose! Paper beats rock");
     } else if (cC == "scissors" && pC == "paper"){
-        console.log("You Lose! Scissors beats paper");
-        return(2);
+        computerScore++;
+        return("You Lose! Scissors beats paper");
     } else if (cC == "scissors" && pC == "rock"){
-        console.log("You Win! Rock beats Scissors");
-        return(1);
+        playerScore++;
+        return("You Win! Rock beats Scissors");
     } else {
-        console.log("Something went wrong")
-        return("error");
+        return("Something went wrong")
     }
 
 }
@@ -55,6 +53,18 @@ buttons.forEach((button) => {
   
     // and for each one we add a 'click' listener
     button.addEventListener('click', () => {
-      console.log(playerPlay(button.id));
+      result = playerPlay(button.id);
+      document.querySelector(".results").textContent = result;
+      document.querySelector(".playerScore").textContent = "Your score is: " + playerScore;
+      document.querySelector(".computerScore").textContent = "Computer's score is: " + computerScore;
+      if (computerScore === 5 || playerScore === 5){
+          if (computerScore === 5){
+            document.querySelector(".computerScore").textContent = "The computer won.";
+          } else if (playerScore === 5){
+            document.querySelector(".playerScore").textContent = "You won!";
+          }
+          playerScore = 0;
+          computerScore = 0;
+      }
     });
   });
