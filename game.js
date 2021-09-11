@@ -4,7 +4,7 @@ let playerScore = 0;
 let computerScore = 0;
 //function to make the computer choose rock paper or scissors
 function computerPlay(){
-    let options = ["rock", "paper", "scissors"];
+    let options = ["Rock", "Paper", "Scissors"];
     let randomChoice = Math.floor(Math.random() * 3);
     return(options[randomChoice]);
 }
@@ -19,23 +19,14 @@ function winner(cC, pC){
     } else if (cC == "rock" && pC == "scissors"){
         computerScore++;
         return("You Lose! Rock beats scissors");
-    } else if (cC == "rock" && pC == "paper"){
-        playerScore++;
-        return("You Win! Paper beats rock");
-    } else if (cC == "paper" && pC == "scissors"){
-        playerScore++;
-        return("You Win! Scissors beats rock");
     } else if (cC == "paper" && pC == "rock"){
         computerScore++;
         return("You Lose! Paper beats rock");
     } else if (cC == "scissors" && pC == "paper"){
         computerScore++;
         return("You Lose! Scissors beats paper");
-    } else if (cC == "scissors" && pC == "rock"){
-        playerScore++;
-        return("You Win! Rock beats Scissors");
     } else {
-        return("Something went wrong")
+        return("You won! " + pC + " beats " + cC);
     }
 
 }
